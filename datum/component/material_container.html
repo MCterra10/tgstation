@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;material_container - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/material_container.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/material_container.html">material_container</a>
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 12"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/Initialize">Initialize</a></th><td>Sets up the proper signals and fills the list of materials with the appropriate references.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/OnAttackBy">OnAttackBy</a></th><td>Proc that allows players to fill the parent with mats</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/amount2sheet">amount2sheet</a></th><td>Turns a material amount into the amount of sheets it should output</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/can_insert_amount_mat">can_insert_amount_mat</a></th><td>Proc for checking if there is room in the component, returning the amount or else the amount lacking.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/get_categories">get_categories</a></th><td>Returns all the categories in a recipe.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/get_item_material_amount">get_item_material_amount</a></th><td>returns the amount of material relevant to this container; if this container does not support glass, any glass in 'I' will not be taken into account</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/get_material_amount">get_material_amount</a></th><td>Returns the amount of a specific material in this container.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/has_enough_of_category">has_enough_of_category</a></th><td>Returns TRUE if you have enough of a specified material category (Which could be multiple materials)</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/has_enough_of_material">has_enough_of_material</a></th><td>Returns TRUE if you have enough of the specified material.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/has_materials">has_materials</a></th><td>Checks if its possible to afford a certain amount of materials. Takes a dictionary of materials.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/has_space">has_space</a></th><td>Proc that returns TRUE if the container has space</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/insert_amount_mat">insert_amount_mat</a></th><td>For inserting an amount of material</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/insert_item">insert_item</a></th><td>Proc specifically for inserting items, returns the amount of materials entered.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/retrieve_all">retrieve_all</a></th><td>Proc to get all the materials and dump them as sheets</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/retrieve_sheets">retrieve_sheets</a></th><td>For spawning mineral sheets at a specific location. Used by machines to output sheets.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/sheet2amount">sheet2amount</a></th><td>Turns an amount of sheets into the amount of material amount it should output</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/transer_amt_to">transer_amt_to</a></th><td>Proc for transfering materials to another container.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/use_amount_mat">use_amount_mat</a></th><td>Uses an amount of a specific material, effectively removing it.</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/use_materials">use_materials</a></th><td>For consuming a dictionary of materials. mats is the map of materials to use and the corresponding amounts, example: list(M/datum/material/glass =100, datum/material/iron=200)</td></tr>
+            <tr><th><a href="datum/component/material_container.html#proc/user_insert">user_insert</a></th><td>Proc used for when player inserts materials</td></tr></table><h2><a name="proc">Proc Details</a></h2><h3><a name="proc/Initialize">Initialize</a><aside>(/list/mat_list, max_amt, _show_on_examine, /list/allowed_types, /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/_precondition, /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/_after_insert, _disable_attackby) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 26"/></a></aside>
+        </h3>
+        <p>Sets up the proper signals and fills the list of materials with the appropriate references.</p><h3><aside class="declaration">proc </aside><a name="proc/OnAttackBy">OnAttackBy</a><aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 57"/></a></aside>
+        </h3>
+        <p>Proc that allows players to fill the parent with mats</p><h3><aside class="declaration">proc </aside><a name="proc/amount2sheet">amount2sheet</a><aside>(amt) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L295">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 295"/></a></aside>
+        </h3>
+        <p>Turns a material amount into the amount of sheets it should output</p><h3><aside class="declaration">proc </aside><a name="proc/can_insert_amount_mat">can_insert_amount_mat</a><aside>(amt, mat) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 173"/></a></aside>
+        </h3>
+        <p>Proc for checking if there is room in the component, returning the amount or else the amount lacking.</p><h3><aside class="declaration">proc </aside><a name="proc/get_categories">get_categories</a><aside>(/list/mats) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 268"/></a></aside>
+        </h3>
+        <p>Returns all the categories in a recipe.</p><h3><aside class="declaration">proc </aside><a name="proc/get_item_material_amount">get_item_material_amount</a><aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 308"/></a></aside>
+        </h3>
+        <p>returns the amount of material relevant to this container; if this container does not support glass, any glass in 'I' will not be taken into account</p><h3><aside class="declaration">proc </aside><a name="proc/get_material_amount">get_material_amount</a><aside>(/<a href="datum.html">datum</a>/<a href="datum/material.html">material</a>/mat) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L317">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 317"/></a></aside>
+        </h3>
+        <p>Returns the amount of a specific material in this container.</p><h3><aside class="declaration">proc </aside><a name="proc/has_enough_of_category">has_enough_of_category</a><aside>(category, amount, multiplier) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L287">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 287"/></a></aside>
+        </h3>
+        <p>Returns TRUE if you have enough of a specified material category (Which could be multiple materials)</p><h3><aside class="declaration">proc </aside><a name="proc/has_enough_of_material">has_enough_of_material</a><aside>(/<a href="datum.html">datum</a>/<a href="datum/material.html">material</a>/req_mat, amount, multiplier) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L278">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 278"/></a></aside>
+        </h3>
+        <p>Returns TRUE if you have enough of the specified material.</p><h3><aside class="declaration">proc </aside><a name="proc/has_materials">has_materials</a><aside>(/list/mats, multiplier) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 246"/></a></aside>
+        </h3>
+        <p>Checks if its possible to afford a certain amount of materials. Takes a dictionary of materials.</p><h3><aside class="declaration">proc </aside><a name="proc/has_space">has_space</a><aside>(amt) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 242"/></a></aside>
+        </h3>
+        <p>Proc that returns TRUE if the container has space</p><h3><aside class="declaration">proc </aside><a name="proc/insert_amount_mat">insert_amount_mat</a><aside>(amt, /<a href="datum.html">datum</a>/<a href="datum/material.html">material</a>/mat) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 131"/></a></aside>
+        </h3>
+        <p>For inserting an amount of material</p><h3><aside class="declaration">proc </aside><a name="proc/insert_item">insert_item</a><aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, multiplier, stack_amt) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 107"/></a></aside>
+        </h3>
+        <p>Proc specifically for inserting items, returns the amount of materials entered.</p><h3><aside class="declaration">proc </aside><a name="proc/retrieve_all">retrieve_all</a><aside>(target) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L234">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 234"/></a></aside>
+        </h3>
+        <p>Proc to get all the materials and dump them as sheets</p><h3><aside class="declaration">proc </aside><a name="proc/retrieve_sheets">retrieve_sheets</a><aside>(sheet_amt, /<a href="datum.html">datum</a>/<a href="datum/material.html">material</a>/M, target) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 210"/></a></aside>
+        </h3>
+        <p>For spawning mineral sheets at a specific location. Used by machines to output sheets.</p><h3><aside class="declaration">proc </aside><a name="proc/sheet2amount">sheet2amount</a><aside>(sheet_amt) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 301"/></a></aside>
+        </h3>
+        <p>Turns an amount of sheets into the amount of material amount it should output</p><h3><aside class="declaration">proc </aside><a name="proc/transer_amt_to">transer_amt_to</a><aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/material_container.html">material_container</a>/T, amt, /<a href="datum.html">datum</a>/<a href="datum/material.html">material</a>/mat) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 158"/></a></aside>
+        </h3>
+        <p>Proc for transfering materials to another container.</p><h3><aside class="declaration">proc </aside><a name="proc/use_amount_mat">use_amount_mat</a><aside>(amt, /<a href="datum.html">datum</a>/<a href="datum/material.html">material</a>/mat) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 146"/></a></aside>
+        </h3>
+        <p>Uses an amount of a specific material, effectively removing it.</p><h3><aside class="declaration">proc </aside><a name="proc/use_materials">use_materials</a><aside>(/list/mats, multiplier) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 184"/></a></aside>
+        </h3>
+        <p>For consuming a dictionary of materials. mats is the map of materials to use and the corresponding amounts, example: list(M/datum/material/glass =100, datum/material/iron=200)</p><h3><aside class="declaration">proc </aside><a name="proc/user_insert">user_insert</a><aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/tgstation/blob/19f357d6bc5a48a2ef2a670251e6b405eb5655b3/code/datums/components/material_container.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm 82"/></a></aside>
+        </h3>
+        <p>Proc used for when player inserts materials</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/tgstation/tgstation/tree/19f357d6bc5a48a2ef2a670251e6b405eb5655b3">19f357d</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.0.0</a></footer>
+</body>
+</html>
